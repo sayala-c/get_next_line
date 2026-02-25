@@ -14,21 +14,31 @@
 
 char    *get_content(int fd, char *content)//leemos el hasta el buffer_size y lo guardamos en una variable.
 {
+    char    *tmp;
     char    *buffer;
     ssize_t read_content;//el size_t normal es unsignes y con ss es signed
 
     buffer = malloc((BUFFER_SIZE + 1)*(sizeof(char)));//reservamos el espacio de memoria donde guardar lo que leeremos con read
     if (!buffer)
         return (NULL);
-    while ()
-        read_content = read(fd, buffer, BUFFER_SIZE);//read devielve el numero de bytes leidos
-    if (read_content = -1)
+    read_content = 1;
+    while (!ft_strchr(content, '\n') && read_content != 0)// read content nos indica si estamos o no al final del documento, es decir, si algo para seguir leyendo, si es distinto a 0 significa que hat algo por leer, ya que son el num de bytes, siempre que haya al menos un byte, entra en el bucle, despues le daremos el valor de la funcion read para saber los bytes exactos que ha leido, que nos serviran de indice para poner el null mas tarde.
     {
-        free (buffer);
-        return (NULL);
+        read_content = read(fd, buffer, BUFFER_SIZE);//read devuelve el numero de bytes leidos
+        if (read_content == -1)
+        {
+            free (buffer);
+            return (NULL);
+        }
+        buffer[read_content] = '\0';
+        tmp = content;
+        content = ft_strjoin (tmp, buffer);
+        free (tmp)
     }
-    ft_strjoin
+    free (buffer);
+    return (content);
 {
+
 char    *get_line(char *content)
 {
     int i;
