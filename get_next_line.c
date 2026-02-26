@@ -28,23 +28,10 @@ char    *get_content(int fd, char *content)//leemos el hasta el buffer_size y lo
         if (read_content == -1)
             return (free (buffer), NULL);
         buffer[read_content] = '\0';
-        content = ft_strjoin (content, buffer);
+        content = gnl_strjoin (content, buffer);
     }
     return (free(buffer), content);
 {
-
-char    *dup_gnl(char *content, char *line)
-{
-    int    i;
-
-    i = 0;
-    while (content[i] != '\n' && content[i] != '\0')
-    {
-        line[i] = content[i];
-        i++;
-    }
-    return (line);
-}
 
 char    *get_line(char *content)
 {
