@@ -22,22 +22,29 @@ char    *get_content(int fd, char *content)//leemos el hasta el buffer_size y lo
     if (!buffer)
         return (NULL);
     read_content = 1;
-    while (!ft_strchr(content, '\n') && read_content != 0)// read content nos indica si estamos o no al final del documento, es decir, si algo para seguir leyendo, si es distinto a 0 significa que hat algo por leer, ya que son el num de bytes, siempre que haya al menos un byte, entra en el bucle, despues le daremos el valor de la funcion read para saber los bytes exactos que ha leido, que nos serviran de indice para poner el null mas tarde.
+    while (!content || (!ft_strchr(content, '\n') && read_content != 0))// read content nos indica si estamos o no al final del documento, es decir, si algo para seguir leyendo, si es distinto a 0 significa que hat algo por leer, ya que son el num de bytes, siempre que haya al menos un byte, entra en el bucle, despues le daremos el valor de la funcion read para saber los bytes exactos que ha leido, que nos serviran de indice para poner el null mas tarde.
     {
         read_content = read(fd, buffer, BUFFER_SIZE);//read devuelve el numero de bytes leidos
         if (read_content == -1)
-        {
-            free (buffer);
-            return (NULL);
-        }
+            return (free (buffer), NULL);
         buffer[read_content] = '\0';
-        tmp = content;
-        content = ft_strjoin (tmp, buffer);
-        free (tmp)
+        content = ft_strjoin (content, buffer);
     }
-    free (buffer);
-    return (content);
+    return (free(buffer), content);
 {
+
+char    *dup_gnl(char *content, char *line)
+{
+    int    i;
+
+    i = 0;
+    while (content[i] != '\n' && content[i] != '\0')
+    {
+        line[i] = content[i];
+        i++;
+    }
+    return (line);
+}
 
 char    *get_line(char *content)
 {
@@ -55,9 +62,7 @@ char    *get_line(char *content)
         line = malloc((i + 1) * (sizeof(char)));
     if (!line)
         return (NULL);
-    i = 0;
-    while (content[i] != '\n' && content[i] != '\0')
-        line[i++] = content[i++];
+    line = dup_gnl(content, line);
     if (content[i] == '\n')
         line[i++] = '\n';
     line[i] = '\0';
