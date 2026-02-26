@@ -16,7 +16,7 @@ char    *get_content(int fd, char *content)//leemos el hasta el buffer_size y lo
 {
     char    *tmp;
     char    *buffer;
-    ssize_t read_content;//el size_t normal es unsignes y con ss es signed
+    int read_content;//el size_t normal es unsignes y con ss es signed
 
     buffer = malloc((BUFFER_SIZE + 1)*(sizeof(char)));//reservamos el espacio de memoria donde guardar lo que leeremos con read
     if (!buffer)
@@ -56,7 +56,7 @@ char    *get_line(char *content)
     return (line);
 }
 
-char    *get_update_content()
+char    *get_update_content(content)
 char    *get_next_line(int fd)
 {
     static char *content;//los static recuerdan y guardan el contenido de la variable incluse despues del return. Con una variable normal se borra
