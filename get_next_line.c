@@ -68,6 +68,8 @@ char    *get_line(char *content)
     line[i] = '\0';
     return (line);
 }
+
+char    *get_update_content()
 char    *get_next_line(int fd)
 {
     static char *content;//los static recuerdan y guardan el contenido de la variable incluse despues del return. Con una variable normal se borra
