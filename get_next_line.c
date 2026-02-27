@@ -35,12 +35,12 @@ char    *get_content(int fd, char *content)//leemos el hasta el buffer_size y lo
 
 char    *get_line(char *content)
 {
-    int i;
+    int i;  
     char    *line;
 
     i = 0;
     if (!content)
-        return(NULL);
+        return(NULL); 
     while (content[i] != '\n' && content[i] !='\0')
         i++;
     if (content[i] == '\n')
@@ -56,7 +56,32 @@ char    *get_line(char *content)
     return (line);
 }
 
-char    *get_update_content(content)
+char    *get_update_content(char *content, char *line)
+{
+    int line_len;
+    int new_content_len;
+    int content_len;
+    int i;
+    char    *new_content;
+
+    line_len = ft_strlen(line);
+    content_len = ft_strlen(content);
+    new_content_len = content_len - line_len;
+    if (new_content_len == 0)
+        return (free(content), NULL);
+    new_content = malloc((new_content_len + 1) * sizeof(char));
+    if (!new_content)
+        return (free(content), NULL);
+    i = 0;
+    while (content[i] && new_content_len > i)
+    {
+        new_content[i] = content[line_len + i];
+        i++;
+    }
+    new_content[i] = '\0';
+    return (free(content), new_content);
+}
+
 char    *get_next_line(int fd)
 {
     static char *content;//los static recuerdan y guardan el contenido de la variable incluse despues del return. Con una variable normal se borra
@@ -65,6 +90,9 @@ char    *get_next_line(int fd)
     if(!content)
         return(NULL);
     line = get_line(content);//funcion aux para leer y guardar hasta el primer /n encontrado en content
-    content = get_update_content(content);
+    if (!line)
+        return (free(content), NULL);
+    content = get_update_content(content, line);
     return (line);
 }
+
