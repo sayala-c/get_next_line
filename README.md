@@ -20,7 +20,7 @@ The project can be compiled with `cc` and the `-Wall -Wextra -Werror` flags, inc
 ### Usage
 To use this function in your projects, include the header in your C files and link the library during compilation:
 
-#include "get_next_line.h"
+`#include "get_next_line.h"`
 
 #### AI Usage
 * For this project AI has been used as a guide to understand concepts and logic and find errors. No code generation was used.
