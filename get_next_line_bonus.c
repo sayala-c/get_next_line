@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sayala-c <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/19 20:58:17 by sayala-c          #+#    #+#             */
-/*   Updated: 2026/03/12 03:40:08 by sayala-c         ###   ########.fr       */
+/*   Created: 2026/02/28 17:46:42 by sayala-c          #+#    #+#             */
+/*   Updated: 2026/03/12 03:48:45 by sayala-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_content(int fd, char *content)
 {
@@ -25,9 +25,9 @@ char	*get_content(int fd, char *content)
 	{
 		read_content = read(fd, buffer, BUFFER_SIZE);
 		if (read_content == -1)
-			return (free(buffer), free(content), NULL);
+			return (free (buffer), free(content), NULL);
 		buffer[read_content] = '\0';
-		content = gnl_strjoin(content, buffer);
+		content = gnl_strjoin (content, buffer);
 	}
 	return (free(buffer), content);
 }
@@ -40,7 +40,7 @@ char	*get_line(char *content)
 	i = 0;
 	if (!content[i])
 		return (NULL);
-	while (content[i] != '\n' && content[i])
+	while (content[i] != '\n' && content[i] != '\0')
 		i++;
 	if (content[i] == '\n')
 		line = malloc((i + 2) * (sizeof(char)));
@@ -83,35 +83,21 @@ char	*get_update_content(char *content, char *line)
 
 char	*get_next_line(int fd)
 {
-	static char	*content;
+	static char	*content[10240];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= 10240 || BUFFER_SIZE <= 0)
 		return (NULL);
-	content = get_content(fd, content);
-	if (!content)
+	content[fd] = get_content(fd, content[fd]);
+	if (!content[fd])
 		return (NULL);
-	line = get_line(content);
+	line = get_line(content[fd]);
 	if (!line)
 	{
-		free(content);
-		content = NULL;
+		free(content[fd]);
+		content[fd] = NULL;
 		return (NULL);
 	}
-	content = get_update_content(content, line);
+	content[fd] = get_update_content(content[fd], line);
 	return (line);
 }
-/*
-int	main(void)
-{
-	int		fd;
-	char	*current_line;
-	
-	fd = open("text1.txt", O_RDONLY);
-	while ((current_line = get_next_line(fd)) != NULL)
-	{
-		printf("%s", current_line);
-		free(current_line);
-	}
-	close(fd);
-}*/
