@@ -37,25 +37,12 @@ To use this function in your projects, include the header in your C files and li
 
 | Function | Description |
 | :--- | :--- |
-| `ft_printf` | Main entry point that parses the string and manages the `va_list`. |
-| `ft_format` | Dispatcher that identifies the specifier and calls the corresponding function. |
-| `ft_putnbr` | Handles %d and %i by processing signed integers. |
-| `ft_putnbr_u` | Handles %u by processing unsigned decimal integers. |
-| `ft_putnbr_hex` | Processes hexadecimal conversions for %x and %X. |
-| `ft_p_print` | Specifically handles the %p conversion for memory addresses. |
-| `ft_putchar` | Handles the %c and %% conversion by printing a single character. |
-| `ft_putstr` | Handles the %s conversion by printing a string of characters. |
+| `get_next_line` | Main entry point that coordinates reading, extraction, and updating. |
+| `get_content` | Reads from the FD and accumulates data into the static buffer. |
+| `get_line` | Extracts the complete line up to the \n from the accumulated string. |
+| `get_update_content` | Trims the static variable to keep only the unread data. |
+| `gnl_strjoin` | Concatenates two strings while correctly managing memory. |
+| `ft_strchr` | Locates the \n character within a string. |
+| `ft_strlen` | Calculates the length of a character string. |
+| `dup_gnl` | Helper used to copy characters from the buffer to the final line. |
 
-## Conversions implemented in this project:
-
-| Convertion | Description |
-| :--- | :--- |
-| `%c` | Prints a single character. |
-| `%s` | Prints a string of characters. |
-| `%p` | Prints a pointer in hexadecimal format (0x...). |
-| `%d` | Prints a decimal number (base 10). |
-| `%i` | Prints an integer in base 10. |
-| `%u` | Prints an unsigned decimal number. |
-| `%x` | Prints a hexadecimal number in lowercase. |
-| `%X` | Prints a hexadecimal number in uppercase. |
-| `%%` | Prints a percent sign. |
