@@ -17,7 +17,7 @@ The bonus version of this project allows managing multiple file descriptors simu
 ### Compilation
 The project can be compiled with `cc` and  the `-Wall -Wextra -Werror` flags, including the definition of the `buffer size`:
 
-* cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c
+`cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c`
 
 ### Usage
 To use this function in your projects, include the header in your C files and link the library during compilation:
