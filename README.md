@@ -1,15 +1,13 @@
 *This project has been created as part of the 42 curriculum by sayala-c.*
 
 ## Description
-The goal of this project is to program a function that returns a line read from a file descriptor. get_next_line allows reading the content of a text file line by line, which is highly efficient for processing files without loading them entirely into memory.
+The goal of this project is to program a function that returns a line read from a file descriptor. `get_next_line` allows reading the content of a text file line by line, which is highly efficient for processing files without loading them entirely into memory.
 
 The algorithm logic follows these steps:
 
-Reading: The get_content function reads from the file using a defined BUFFER_SIZE and concatenates the data into a static variable until a newline character (\n) or the end of the file is found.
-
-Extraction: The get_line function analyzes the static variable to extract the current line, including the \n if it exists, to prepare it for return.
-
-Updating: The get_update_content function cleans the static variable by removing the line that was just returned and preserving the "remainder" for the next call.
+* Reading: The `get_content` function reads from the file using a defined BUFFER_SIZE and concatenates the data into a static variable until a newline character (\n) or the end of the file is found.
+* Extraction: The `get_line` function analyzes the static variable to extract the current line, including the \n if it exists, to prepare it for return.
+* Updating: The `get_update_content` function cleans the static variable by removing the line that was just returned and preserving the "remainder" for the next call.
 ### Bonus
 The bonus version of this project allows managing multiple file descriptors simultaneously. This is achieved by using an array of static pointers static char *content[10240], ensuring that the reading progress of one file is not lost when switching to another.
 
