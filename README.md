@@ -13,7 +13,7 @@ The bonus version of this project allows managing multiple file descriptors simu
 
 ## Instructions
 ### Compilation
-The project can be compiled with the `-Wall -Wextra -Werror` flags, including the definition of the `buffer size`:
+The project can be compiled with `cc` and the `-Wall -Wextra -Werror` flags, including the definition of the `buffer size`:
 
 * `cc -Wall -Wextra -Werror -D BUFFER_SIZE=42 get_next_line.c get_next_line_utils.c`
 
