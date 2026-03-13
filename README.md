@@ -25,7 +25,7 @@ To use this function in your projects, include the header in your C files and li
 `#include "get_next_line.h"`
 
 #### AI Usage
-* For this project AI has been used as a guide to understand concepts and logic and find errors. No code generation was used.
+For this project AI has been used as a guide to understand concepts and logic and find errors. No code generation was used.
 
 ## Resources
 * Man pages (read, malloc, free)
